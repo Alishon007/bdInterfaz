@@ -3,34 +3,92 @@ package com.valen.basededatoslocal.model;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class ManagerDB {
 
-    DbHelper dbHelper;
+    private final DbHelper dbHelper;
+    private SQLiteDatabase db;
 
-    SQLiteDatabase db;
-
-    public ManagerDB(Context context){
+    public ManagerDB(Context context) {
         dbHelper = new DbHelper(context);
     }
-    // metodo para abrir la base de datos en modo escritura
-    public void openDbWr(){
-        db = dbHelper.getWritableDatabase();
-    }
-    //metodo para abrir la base de datos en modo lectura
-    public void openRbRd(){
-        db = dbHelper.getReadableDatabase();
+
+    // Método para abrir la base de datos en modo escritura
+    public void openDbWr() {
+        if (db == null || !db.isOpen()) {
+            db = dbHelper.getWritableDatabase();
+        }
     }
 
-    public long insertCiudad(){
+    // Método para cerrar la base de datos (opcional)
+    public void closeDb() {
+        if (db != null && db.isOpen()) {
+            db.close();
+        }
+    }
 
-        //1. abrir la base de datos en modo escritura
-        openDbWr();
-        //2. crear un contenedor de valores para almacenar columnas y datos a insertar
+    // Método para insertar una ciudad
+    public long insertCiudad(int codigo, String nombre) {
+        openDbWr(); // Asegurar que la base de datos esté abierta
+
         ContentValues valores = new ContentValues();
-        valores.put("codigo",1);
-        valores.put("Nombre","Popayan");
-        long resul =  db.insert("Ciudad", null, valores);
-        return resul;
+        valores.put("codigo", codigo);
+        valores.put("Nombre", nombre);
+
+        long resultado = db.insert("Ciudad", null, valores);
+        return resultado;
+    }
+
+    // Método para insertar un departamento
+    public long insertDepartamento(int codigo, String nombre) {
+        openDbWr(); // Asegurar que la base de datos esté abierta
+
+        ContentValues valores = new ContentValues();
+        valores.put("codigo", codigo);
+        valores.put("nombre", nombre);
+
+        long resultado = db.insert("Departamento", null, valores);
+        return resultado;
+    }
+
+
+
+    // Actualizar Ciudad
+    public int updateCiudad(int codigo, String nuevoNombre) {
+        openDbWr();
+        ContentValues valores = new ContentValues();
+        valores.put("Nombre", nuevoNombre);
+
+        int filasAfectadas = db.update("Ciudad", valores, "codigo=?", new String[]{String.valueOf(codigo)});
+        Log.d("ManagerDB", "Actualizando ciudad: " + codigo + ", resultado: " + filasAfectadas);
+        return filasAfectadas;
+    }
+
+    // Actualizar Departamento
+    public int updateDepartamento(int codigo, String nuevoNombre) {
+        openDbWr();
+        ContentValues valores = new ContentValues();
+        valores.put("nombre", nuevoNombre);
+
+        int filasAfectadas = db.update("Departamento", valores, "codigo=?", new String[]{String.valueOf(codigo)});
+        Log.d("ManagerDB", "Actualizando departamento: " + codigo + ", resultado: " + filasAfectadas);
+        return filasAfectadas;
+    }
+
+    // Eliminar Ciudad
+    public int deleteCiudad(int codigo) {
+        openDbWr();
+        int filasEliminadas = db.delete("Ciudad", "codigo=?", new String[]{String.valueOf(codigo)});
+        Log.d("ManagerDB", "Eliminando ciudad: " + codigo + ", resultado: " + filasEliminadas);
+        return filasEliminadas;
+    }
+
+    // Eliminar Departamento
+    public int deleteDepartamento(int codigo) {
+        openDbWr();
+        int filasEliminadas = db.delete("Departamento", "codigo=?", new String[]{String.valueOf(codigo)});
+        Log.d("ManagerDB", "Eliminando departamento: " + codigo + ", resultado: " + filasEliminadas);
+        return filasEliminadas;
     }
 }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:orientation="vertical"
+    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.MainActivity">
@@ -10,10 +12,126 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Registra tu ciudad y departamento!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tlCodCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:paddingHorizontal="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusBottomEnd="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtCodCiudad"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:hint="Ingrese el codigo de la ciudad"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tlCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:paddingHorizontal="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusBottomEnd="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtCiudad"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:hint="Ingrese la ciudad"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tlCodDepa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:paddingHorizontal="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusBottomEnd="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtCodDepa"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:hint="Ingrese el codigo del departamento"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tlDepartamento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:paddingHorizontal="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusBottomEnd="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtDepartamento"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:hint="Ingrese departamento"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btnEnviar"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:layout_margin="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Actualizar Datos"
+            android:layout_margin="10dp"
+            />
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Eliminar Datos"
+            android:layout_margin="10dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
